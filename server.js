@@ -1,4 +1,3 @@
-```javascript
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -34,4 +33,3 @@ app.post('/prompts', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
-```
