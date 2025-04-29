@@ -3,6 +3,47 @@ const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
 const app = express();
+
+// 🔹 Novos endpoints:
+
+// Rota para retornar todos os prompts (já existente)
+app.get('/prompts', (req, res) => {
+  fs.readFile('./prompts.json', 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Erro ao ler prompts.');
+    }
+    res.send(JSON.parse(data));
+  });
+});
+
+// Rota para retornar apenas IA1
+app.get('/prompts/IA1', (req, res) => {
+  fs.readFile('./prompts.json', 'utf8', (err, data) => {
+    if (err) return res.status(500).send('Erro ao ler IA1.');
+    const json = JSON.parse(data);
+    res.send(json.IA1 || 'IA1 não encontrado.');
+  });
+});
+
+// Rota para retornar apenas IA2
+app.get('/prompts/IA2', (req, res) => {
+  fs.readFile('./prompts.json', 'utf8', (err, data) => {
+    if (err) return res.status(500).send('Erro ao ler IA2.');
+    const json = JSON.parse(data);
+    res.send(json.IA2 || 'IA2 não encontrado.');
+  });
+});
+
+// Rota para retornar apenas IA3
+app.get('/prompts/IA3', (req, res) => {
+  fs.readFile('./prompts.json', 'utf8', (err, data) => {
+    if (err) return res.status(500).send('Erro ao ler IA3.');
+    const json = JSON.parse(data);
+    res.send(json.IA3 || 'IA3 não encontrado.');
+  });
+});
+
+// 🔹 Resto da configuração existente
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
